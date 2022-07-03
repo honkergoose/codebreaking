@@ -1,0 +1,16 @@
+# Microbiology learning book
+
+#### Key Terms
+<u>cell</u>: The building block of lyfe<br>
+<u>nucleus</u>: Central hub of a eukaryotic cell. Houses DNA for RNA transcription. 1 cell 1 nucleus is generally true but depends on complexity (red blood cells don't have a nucleus becuase their function is simple and doesn't require it<br>
+<u>eukarot</u>: The more "complex" cells. The building blocks for complex organism like mammals. Contrast to unicellular organisms like Archaea and Bacteria<br>
+<u>archaea</u>: A collection of uniceullar, organelle-free organisms. Extremophiles are often archaea like those funny things that live in volcanoes, etc. Less is known about archaea. Some archaea like [Haloarchaea](https://en.wikipedia.org/wiki/Haloarchaea) have even been found in the [human gut](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00894-x#:~:text=Archaea%20are%20one%20of%20the,other%20archaeal%20phylotypes%20is%20available.).<br>
+<u>bacteria/prokaryote</u>: No membrane enclosed organelles. Binary fission is much simpler than mitosis. (How does the difference in cellular structure contribute to the different strategies for defending against pathogens?).
+<u>chromatin</u>: Generic word for nucleic acid junk (i.e. DNA) and protiens in a eukaryotic nucleus. Chromatin gathers into chromosomes before and during cell division.<br>
+<u>chromosome</u>: Chromosome is a condensation of chromatin that appeaqrs in advance of an during cell division. (So what the hell is an XY chromsome etc in mammals/humans?)<br>
+<u>polymers</u>: Nucleic acids are polymers. Polymers are repeating chains of similar strucutre molecules known as monomers.
+
+
+
+### Other thoughts
+Lots of terms; should probably do some [useful memory things](https://www.gwern.net/Spaced-repetition)
