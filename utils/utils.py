@@ -1,6 +1,103 @@
 # A module of utilities for solving ROSALIND problems and learning a bit of biology
 from typing import List, Iterator, NamedTuple
 
+class GeneticString(NamedTuple):
+    name: str
+    description: str
+    data: str
+
+def overlap_graph_connection(gs1: GeneticString, gs2: GeneticString, k: int) -> set:
+    "Given two genetic strings return entries in an adjacency list format"
+    adj_set = set()
+    # import pdb; pdb.set_trace()
+    if gs1.data == gs2.data:
+        # String are the same. Do not connect.
+        return adj_set
+    
+    if gs1.data[len(gs1.data)-k:len(gs1.data)] == gs2.data[:k]:
+        # gs1 points to gs2
+        adj_set.add(f"{gs1.name} {gs2.name}")
+
+    if gs2.data[len(gs2.data)-k:len(gs2.data)] == gs1.data[:k]:
+        # gs2 points to gs1
+        adj_set.add(f"{gs2.name} {gs1.name}")
+    return adj_set
+    
+
+PROFILE_MATRIX_MAP = {
+    "A": 0,
+    "C": 1,
+    "G": 2,
+    "T": 3
+}
+PROFILE_MATRIX_MAP_REV = {v: k for k, v in PROFILE_MATRIX_MAP.items()}
+def build_consensus_string(pm: List[List[int]]) -> str:
+    # Build the consensus string from a profile matrix
+    # Profile matrix is in the format of A, C, G, T
+    consensus = ""
+    for col in range(len(pm[0])):
+        maxidx = 0
+        for row in range(len(pm)):
+            if pm[row][col] >= pm[maxidx][col]:
+                maxidx = row
+        consensus += PROFILE_MATRIX_MAP_REV[maxidx]
+    return consensus
+
+
+def add_to_profile_matrix(dna: str, pm: List[List[int]]) -> List[List[int]]:
+    # Given a DNA string and a profile matrix, return the profile matrix with the added string
+    # Profile matrix is in the format of A, C, G, T
+    for i in range(len(dna)):
+        pm[PROFILE_MATRIX_MAP[dna[i]]][i] += 1
+    return pm
+
+def shared_dna_motif(dna1: str, dna2: str) -> List[str]:
+    # Tired; unfinished
+    # The looping structure will be a bit compilicated but I see it in my head
+    # this will solve: https://rosalind.info/problems/lcsm/
+    # as the follow up is a function that just goes through each subsequent
+    # da string and just checks each motif from this func with dna_motif
+    # Returns the list of shared motifs between the two dna strings
+    # you then pick the largest and return one of them
+    motifs = []
+    k = i = 0
+    while i < len(dna1):
+        while k < len(dna2):
+            if dna1[i] == dna2[k]:
+                # A matching character was found. A motif
+    return [1]
+
+
+# Looks for a motif in a DNA strand
+# A motif is a common shared interval of DNA
+# For example the Alu repeat is a repeat in the human genome
+# Knowing these allows you to correlate between organisms genes or sets of genes and correlate their purpose
+def dna_motif(dna, motif) -> List[int]:
+    # Returns positions of all found instances of the substring or motif
+    # returns an empty list if no instance is found
+    positions = []
+    k = i = 0
+    while i < len(dna):
+        if dna[i] == motif[k]:
+            # A matching character is found
+            # If we're at the end of the motif add its position
+            if k == len(motif) - 1:
+                # go back to its start and record that position
+                positions.append(i - k)
+                # reset motif's index and take i back
+                i = i - k + 1
+                k = 0
+                continue
+            # If we're not at the end of the motif increment the index
+            k += 1
+            i += 1
+        else:
+            # No match is found.
+            # reset the index of the motif
+            k = 0
+            i += 1
+    return positions
+    
 
 # I'm tired and should re-read this one
 # https://rosalind.info/problems/hamm/
@@ -40,10 +137,7 @@ def count_nucleotides(dna: str, nucleotide: str) -> int:
             count += 1
     return count
 
-class GeneticString(NamedTuple):
-    name: str
-    description: str
-    data: str
+
 
 def parse_fasta(source: Iterator[str]) -> Iterator[GeneticString]:
     """
